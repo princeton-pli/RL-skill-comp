@@ -10,7 +10,7 @@ This repository contains the code for our paper: How Does RL Induce Skill Compos
   - [Prepare Conda Environment](#prepare-conda-environment)
   - [Prepare Base Models](#prepare-base-models)
   - [Generate Data](#generate-data)
-  - [Example Train / Eval Scripts](#train-eval-scripts)
+  - [Example Scripts](#example-scripts)
 - [Bugs or Questions?](#bugs-or-questions)
 - [Citation](#citation)
 
@@ -69,7 +69,7 @@ python preprocess_balanced.py
 ```
 
 
-### Example Train / Eval Scripts
+### Example Scripts
 Always set the following three environment variables
 ```Shell
 export PROJECT_DIR
