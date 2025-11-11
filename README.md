@@ -43,6 +43,12 @@ git clone https://huggingface.co/Qwen/Qwen2.5-3B
 git clone https://huggingface.co/Qwen/Qwen2.5-7B
 ```
 
+For Llama models, use the provided chat template.
+```Shell
+git clone https://huggingface.co/meta-llama/Llama-3.2-3B
+cp -rf tokenizer_config.json models/Llama-3.2-3B/tokenizer_config.json
+```
+
 ### Generate Data
 ```Shell
 for i in {0..17}
