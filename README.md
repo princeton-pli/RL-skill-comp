@@ -2,6 +2,9 @@
 
 This repository contains the code for our paper: How Does RL Induce Skill Composition? A Case Study Using Countdown.
 
+**************************** **Updates** ****************************
+* 12/01/2025: Our paper is accepted as a Spotlight poster at the [Efficient Reasoning Workshop](https://openreview.net/forum?id=qqR4hUUfbe) and as a poster at the [MATH-AI Workshop](https://openreview.net/forum?id=5KqwASPclR) at NeurIPS 2025. See you in San Diego!
+
 ## Quick Links
 
 - [How Does RL Induce Skill Composition? A Case Study Using Countdown](#RL-skill-comp)
