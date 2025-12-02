@@ -1,13 +1,14 @@
-## How Does RL Induce Skill Composition? A Case Study Using Countdown
+## How Does RL Post-training Induce Skill Composition? A Case Study Using Countdown
 
-This repository contains the code for our paper: How Does RL Induce Skill Composition? A Case Study Using Countdown.
+This repository contains the code for our paper: How Does RL Post-training Induce Skill Composition? A Case Study Using Countdown.
 
 **************************** **Updates** ****************************
+* 12/01/2025: Our paper is on [arXiv](https://arxiv.org/abs/2512.01775).
 * 12/01/2025: Our paper is accepted as a Spotlight poster at the [Efficient Reasoning Workshop](https://openreview.net/forum?id=qqR4hUUfbe) and as a poster at the [MATH-AI Workshop](https://openreview.net/forum?id=5KqwASPclR) at NeurIPS 2025. See you in San Diego!
 
 ## Quick Links
 
-- [How Does RL Induce Skill Composition? A Case Study Using Countdown](#RL-skill-comp)
+- [How Does RL Post-training Induce Skill Composition? A Case Study Using Countdown](#RL-skill-comp)
 - [Quick Links](#quick-links)
 - [Experiments](#experiments)
   - [Prepare Conda Environment](#prepare-conda-environment)
@@ -120,4 +121,12 @@ If you have any questions related to the code or the paper, feel free to email S
 
 ## Citation
 
-TODO
+@misc{parkkaur2025RLskillcomposition,
+      title={How Does RL Post-training Induce Skill Composition? A Case Study on Countdown}, 
+      author={Simon Park and Simran Kaur and Sanjeev Arora},
+      year={2025},
+      eprint={2512.01775},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2512.01775}, 
+}
