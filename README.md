@@ -155,7 +155,7 @@ If you have any questions related to the code or the paper, feel free to email S
 @inproceedings{parkkaur2025RLskillcomposition,
       title={How Does RL Post-training Induce Skill Composition? A Case Study on Countdown}, 
       author={Simon Park and Simran Kaur and Sanjeev Arora},
-      year={2025},
+      year={2026},
       booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
       url={https://arxiv.org/abs/2512.01775}, 
 }
