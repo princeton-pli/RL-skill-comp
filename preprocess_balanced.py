@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     # Generate test data for n = 6
     test_dataset = []
-    for i in range(4328):
+    for i in range(3494):
         with open(f"data/countdown_6_pattern_{i}.json") as f:
             data = json.load(f)
         test_dataset += data[:1]

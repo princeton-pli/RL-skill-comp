@@ -53,7 +53,7 @@ def all_expressions(k):
             "(A{1}(B{2}((C{4}D){3}E))){0}F",
             "(A{1}((B{3}C){2}(D{4}E))){0}F",
             "(A{1}((B{3}(C{4}D)){2}E)){0}F",
-            "(A{1}(((C{4}D){3}E){2}F)){0}F", 
+            "(A{1}(((B{4}C){3}D){2}E)){0}F",
         ]
         for template in shapes:
             for op1, op2, op3, op4, op5 in product(ops, repeat=5):
@@ -177,6 +177,12 @@ def parse_expression(expression):
     raise ValueError(f"Invalid expression: {expression}")
 
 
+def struct_key(node):
+    # label-free description of a subtree whose children are already sorted
+    if not node.children:
+        return 'L'
+    return node.op + '[' + ','.join(c.sign + struct_key(c) for c in node.children) + ']'
+
 def build_generic_tree(node):
     """
     Converts a binary expression tree into a generic, signed tree by merging
@@ -219,7 +225,7 @@ def build_generic_tree(node):
         node.op = '*' # Canonical operator for multiplicative group
 
     # Sort children based on sign and then weight
-    node.children.sort(key=lambda x: (x.sign, -x.weight, -sum(1 for gc in x.children if gc.sign == '+')))
+    node.children.sort(key=lambda x: (x.sign, -x.weight, -sum(1 for gc in x.children if gc.sign == '+'), struct_key(x)))
     
     # Update weight
     node.weight = sum(c.weight for c in node.children)

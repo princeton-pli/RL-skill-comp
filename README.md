@@ -70,7 +70,7 @@ do
 python generate_puzzles.py --puzzle_size 5 --pattern_index ${i} --num_data 10
 done
 
-for i in {0..4327}
+for i in {0..3493}
 do
 python generate_puzzles.py --puzzle_size 6 --pattern_index ${i} --num_data 1
 done
