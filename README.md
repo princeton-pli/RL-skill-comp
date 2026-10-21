@@ -5,6 +5,7 @@ This repository contains the code for our paper: How Does RL Post-training Induc
 **************************** **Updates** ****************************
 * 12/01/2025: Our paper is on [arXiv](https://arxiv.org/abs/2512.01775).
 * 12/01/2025: Our paper is accepted as a Spotlight poster at the [Efficient Reasoning Workshop](https://openreview.net/forum?id=qqR4hUUfbe) and as a poster at the [MATH-AI Workshop](https://openreview.net/forum?id=5KqwASPclR) at NeurIPS 2025. See you in San Diego!
+* 10/21/2026: Our paper is accepted at [NeurIPS 2026](https://openreview.net/forum?id=zb8jA9cOxq). See you in Atlanta!
 
 ## Quick Links
 
@@ -15,6 +16,7 @@ This repository contains the code for our paper: How Does RL Post-training Induc
   - [Prepare Base Models](#prepare-base-models)
   - [Generate Data](#generate-data)
   - [Example Scripts](#example-scripts)
+- [Formal Theorem Proving (Lean)](#formal-theorem-proving-lean)
 - [Bugs or Questions?](#bugs-or-questions)
 - [Citation](#citation)
 
@@ -115,18 +117,46 @@ export EXP_NAME=balanced-grpo-seed1
 sbatch --dependency=afterok:${jobid} scripts/analyze.sh ## after evaluation is complete
 ```
 
+## Formal Theorem Proving (Lean)
+
+The `lean/` folder reproduces Section 4.5 and Appendix B.5.
+
+| File | Description |
+|---|---|
+| `lean/classify.py` | Extracts the proof body from a response and classifies its top-level binary split as balanced / left-heavy / right-heavy |
+| `lean/data/id.jsonl` | 100 in-distribution questions from [Goedel-LM/SFT_dataset_v2](https://huggingface.co/datasets/Goedel-LM/SFT_dataset_v2) (Apache-2.0): 14 left-heavy, 51 balanced, 35 right-heavy |
+| `lean/data/ood.jsonl` | 135 out-of-distribution questions from the [LeanDojo Benchmark 4](https://github.com/lean-dojo/LeanDojo) (CC BY 2.0), with statements from [mathlib4](https://github.com/leanprover-community/mathlib4) (Apache-2.0): 46 left-heavy, 43 balanced, 46 right-heavy |
+| `lean/generate.py` | Samples proofs from Goedel-Prover-V2-32B with vLLM (k = 32, temperature 0.6, top-p 0.95, 8192 new tokens) |
+| `lean/sft_distribution.py` | Distribution in the SFT dataset (first row of Tables 3 and 12) |
+| `lean/structure_table.py` | Distribution of the generated proofs (second and third rows of Tables 3 and 12) |
+
+Each question records the structure of its reference proof (`ref_bucket`) and the exact prompt given to the model (`prompt`).
+
+```Shell
+## Distribution in the SFT dataset (downloads 10 of the 54 shards)
+python lean/sft_distribution.py
+
+## Generate proofs (Goedel-Prover-V2-32B on 4 GPUs)
+git clone https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B models/Goedel-Prover-V2-32B
+python lean/generate.py --model models/Goedel-Prover-V2-32B --input lean/data/id.jsonl --output lean/outputs/id.jsonl --tp 4
+python lean/generate.py --model models/Goedel-Prover-V2-32B --input lean/data/ood.jsonl --output lean/outputs/ood.jsonl --tp 4
+
+## Distribution in the generated proofs
+python lean/structure_table.py lean/outputs/id.jsonl lean/outputs/ood.jsonl
+```
+
 ## Bugs or Questions?
 
 If you have any questions related to the code or the paper, feel free to email Simon (juhyunp 'at' princeton 'dot' edu) and Simran (skaur 'at' princeton 'dot' edu). If you encounter any problems when using the code, or want to report a bug, you can open an issue. Please try to specify the problem with details so we can give more effective help!
 
 ## Citation
 
-@misc{parkkaur2025RLskillcomposition,
+```
+@inproceedings{parkkaur2025RLskillcomposition,
       title={How Does RL Post-training Induce Skill Composition? A Case Study on Countdown}, 
       author={Simon Park and Simran Kaur and Sanjeev Arora},
       year={2025},
-      eprint={2512.01775},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
+      booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
       url={https://arxiv.org/abs/2512.01775}, 
 }
+```
