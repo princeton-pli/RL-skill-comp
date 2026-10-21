@@ -157,6 +157,6 @@ If you have any questions related to the code or the paper, feel free to email S
       author={Simon Park and Simran Kaur and Sanjeev Arora},
       year={2026},
       booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
-      url={https://arxiv.org/abs/2512.01775}, 
+      url={https://openreview.net/forum?id=zb8jA9cOxq}, 
 }
 ```
